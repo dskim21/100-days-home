@@ -1,0 +1,174 @@
+=========================================
+03. PROGRAM SETUP
+100 Days Home
+=========================================
+
+[추천 기술 스택]
+
+Frontend:
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+
+State:
+- Zustand
+
+Routing:
+- React Router
+
+Chart:
+- Recharts
+
+Storage:
+- LocalStorage
+
+Deploy:
+- Vercel
+
+[프로젝트 생성 명령어]
+
+npm create vite@latest 100-days-home -- --template react-ts
+cd 100-days-home
+npm install
+
+[필수 라이브러리 설치]
+
+npm install react-router-dom zustand recharts lucide-react
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+[Tailwind 설정]
+tailwind.config.js의 content에 아래 추가:
+
+./index.html
+./src/**/*.{js,ts,jsx,tsx}
+
+[추천 폴더 구조]
+
+src/
+├── assets/
+├── components/
+│   ├── common/
+│   ├── home/
+│   ├── checkin/
+│   ├── timeline/
+│   └── achievement/
+│
+├── constants/
+│   ├── behaviorTags.ts
+│   ├── emotions.ts
+│   ├── levels.ts
+│   └── achievements.ts
+│
+├── pages/
+│   ├── HomePage.tsx
+│   ├── CheckInPage.tsx
+│   ├── TimelinePage.tsx
+│   ├── AchievementPage.tsx
+│   └── MyDogPage.tsx
+│
+├── store/
+│   └── useDogStore.ts
+│
+├── types/
+│   └── index.ts
+│
+├── utils/
+│   ├── calculateLevel.ts
+│   ├── generateCoachMessage.ts
+│   ├── getAdoptionDay.ts
+│   └── achievementUtils.ts
+│
+├── App.tsx
+├── main.tsx
+└── index.css
+
+[TypeScript 타입 예시]
+
+type Emotion = "stable" | "tense" | "anxious" | "active" | "tired";
+
+type BehaviorTag =
+  | "eating_well"
+  | "walk_success"
+  | "tail_wagging"
+  | "name_response"
+  | "touch_allowed"
+  | "following_owner"
+  | "hiding"
+  | "stranger_alert"
+  | "less_barking"
+  | "comfortable_sleep";
+
+type DogProfile = {
+  id: string;
+  name: string;
+  adoptionDate: string;
+  birthDate?: string;
+  breed?: string;
+  personalityTags: string[];
+  imageUrl?: string;
+};
+
+type CheckIn = {
+  id: string;
+  date: string;
+  emotion: Emotion;
+  behaviorTags: BehaviorTag[];
+  memo?: string;
+  score: number;
+};
+
+type Achievement = {
+  id: string;
+  title: string;
+  description: string;
+  conditionTag: BehaviorTag;
+  unlockedAt?: string;
+};
+
+[Zustand Store 역할]
+
+useDogStore:
+- dogProfile
+- checkIns
+- achievements
+- addDogProfile()
+- updateDogProfile()
+- addCheckIn()
+- getTotalScore()
+- getCurrentLevel()
+- getUnlockedAchievements()
+- resetData()
+
+[LocalStorage key 추천]
+100-days-home-storage
+
+[라우팅 구조]
+
+/              HomePage
+/check-in      CheckInPage
+/timeline      TimelinePage
+/achievements  AchievementPage
+/my-dog        MyDogPage
+
+[UI 톤]
+- 따뜻함
+- 과하지 않은 감성
+- 크림/베이지 계열 느낌
+- 카드형 레이아웃
+- 둥근 모서리
+- 큰 CTA 버튼
+- 초보 보호자도 부담 없는 문장
+
+[개발 우선순위]
+1. 라우팅/레이아웃
+2. 프로필 등록
+3. 체크인 저장
+4. 점수/레벨 계산
+5. 홈 표시
+6. 타임라인
+7. 업적
+8. UI 다듬기
+9. README 정리
+10. 배포
